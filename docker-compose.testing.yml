@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:16.3
+    container_name: test-kib-postgres
+    ports:
+      - 5433:5432
+    environment:
+      POSTGRES_DB: test-kib
+      POSTGRES_USER: test-kib
+      POSTGRES_PASSWORD: test-kib
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+        test-kib-network:
+
+  redis:
+      image: redis:7.4
+      container_name: test-kib-redis
+      ports:
+          - 6380:6379
+      restart: unless-stopped
+      networks:
+        test-kib-network:
+
+networks:
+   test-kib-network:

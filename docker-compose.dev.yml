@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  app:
+    container_name: kib-app
+    build:
+      context: ./
+      target: development
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    networks:
+      kib-network:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16.3
+    container_name: kib-postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: kib
+      POSTGRES_USER: kib
+      POSTGRES_PASSWORD: kib
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+        kib-network:
+
+  redis:
+      image: redis:7.4
+      container_name: kib-redis
+      ports:
+          - 6379:6379
+      restart: unless-stopped
+      networks:
+        kib-network:
+
+networks:
+   kib-network:
