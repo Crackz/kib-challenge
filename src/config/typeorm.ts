@@ -6,7 +6,6 @@ import { validateEnvironmentVariables } from '../common/env/validation';
 import { DataSource } from 'typeorm';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as path from 'path';
-import { RecordEntity } from '../modules/records/entities/record.entity';
 
 const loadedDotEnv = dotenv.config({
   path: envFilePaths,
@@ -20,8 +19,8 @@ const config: TypeOrmModuleOptions = {
   username: `${loadedEnvironmentVars.DATABASE_USERNAME}`,
   password: `${loadedEnvironmentVars.DATABASE_PASSWORD}`,
   database: `${loadedEnvironmentVars.DATABASE_NAME}`,
-  entities: [RecordEntity],
-  migrations: [path.join(__dirname, '../../dist/src/migrations/*{.ts,.js}')],
+  entities: ['dist/src/**/*.entity{.ts,.js}'],
+  migrations: ['dist/src/migrations/*{.ts,.js}'],
   autoLoadEntities: true,
 };
 

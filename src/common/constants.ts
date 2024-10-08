@@ -7,8 +7,4 @@ export const NodeEnvironment = {
 } as const;
 
 // Models Names
-export const RECORDS_MODEL_NAME = 'records';
-
-// Channels Names
-export const PROCESSABLE_RECORDS_CHANNEL_NAME = 'processable-records';
-export const PROCESSED_RECORDS_CHANNEL_NAME = 'processed-records';
+export const MOVIES_MODEL_NAME = 'movies';

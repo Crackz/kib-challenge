@@ -7,6 +7,7 @@ import { EnvironmentVariables } from './common/env/environment-variables';
 import { validateEnvironmentVariables } from './common/env/validation';
 import { envFilePaths } from './config';
 import { typeormConfig } from './config/typeorm';
+import { MoviesModule } from './modules/movies/movies.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { typeormConfig } from './config/typeorm';
         return configService.get('typeorm');
       },
     }),
+    MoviesModule,
   ],
 })
 export class AppModule {
