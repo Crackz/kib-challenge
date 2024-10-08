@@ -3,12 +3,14 @@ import {
   FindManyOptions,
   FindOneOptions,
   FindOptionsWhere,
+  InsertResult,
   Repository,
   UpdateResult,
 } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { BaseEntity } from '../entities/base.entity';
 import { DeepWritable } from '../types/writable';
+import { UpsertOptions } from 'typeorm/repository/UpsertOptions';
 
 export abstract class BaseRepo<T extends BaseEntity> {
   constructor(private readonly baseRepo: Repository<T>) {}
@@ -46,8 +48,22 @@ export abstract class BaseRepo<T extends BaseEntity> {
     return await this.baseRepo.save(data as DeepPartial<T>);
   }
 
+  async upsert(
+    data: QueryDeepPartialEntity<T>,
+    conflictPaths: (keyof T & string)[],
+  ): Promise<InsertResult> {
+    return await this.baseRepo.upsert(data, conflictPaths);
+  }
+
   async insert(data: DeepWritable<T>[]): Promise<void> {
     await this.baseRepo.insert(data as QueryDeepPartialEntity<T>);
+  }
+
+  async update(
+    findQuery: FindOptionsWhere<T>,
+    data: QueryDeepPartialEntity<T>,
+  ): Promise<UpdateResult> {
+    return await this.baseRepo.update(findQuery, data);
   }
 
   async deleteById<TId extends string | number = string>(id: TId) {

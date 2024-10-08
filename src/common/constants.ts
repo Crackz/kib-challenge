@@ -17,6 +17,7 @@ export const API_KEY_TOKEN = 'api-key';
 export const USERS_MODEL_NAME = 'users';
 export const MOVIES_MODEL_NAME = 'movies';
 export const MOVIES_RATING_MODEL_NAME = 'movies-ratings';
+export const MOVIES_FAVORITE_MODEL_NAME = 'movies-favorites';
 
 // Tokens
 export const USER1_AUTH_TOKEN = 'USER1_AUTH_TOKEN';

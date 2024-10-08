@@ -11,6 +11,7 @@ import { MoviesModule } from './modules/movies/movies.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { UsersModule } from './modules/users/users.module';
 import { MoviesRatingsModule } from './modules/movies-ratings/movies-ratings.module';
+import { MoviesFavoritesModule } from './modules/movies-favorites/movies-favorites.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { MoviesRatingsModule } from './modules/movies-ratings/movies-ratings.mod
     UsersModule,
     MoviesModule,
     MoviesRatingsModule,
+    MoviesFavoritesModule,
   ],
 })
 export class AppModule {
