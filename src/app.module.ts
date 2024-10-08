@@ -9,6 +9,7 @@ import { envFilePaths } from './config';
 import { typeormConfig } from './config/typeorm';
 import { MoviesModule } from './modules/movies/movies.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { CacheModule } from '@nestjs/cache-manager';
       // it would take on around 66 mb to cache 1000 find movies responses
       max: 1000,
     }),
+    UsersModule,
     MoviesModule,
   ],
 })
