@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { PaginatedResult } from 'src/common/interfaces/paginated-result.dto';
 import { MovieDto } from '../dtos/movie.dto';
 import { MoviesRepo } from '../movies.repo';
@@ -7,6 +7,7 @@ import { MovieEntity } from '../entities/movie.entity';
 import { FilesService } from 'src/modules/files/files.service';
 import { MoviesGenresService } from 'src/modules/movies-genres/movies.service';
 import { ApiErrors } from 'src/common/utils';
+import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()
 export class MoviesService {
@@ -14,6 +15,8 @@ export class MoviesService {
     private readonly moviesRepo: MoviesRepo,
     private readonly filesService: FilesService,
     private readonly moviesGenresService: MoviesGenresService,
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache,
   ) {}
 
   private checkValidGenres(genreIds?: string[]): number[] {
@@ -25,7 +28,7 @@ export class MoviesService {
     for (const genreId of genreIds) {
       if (!this.moviesGenresService.isValidId(genreId)) {
         throw ApiErrors.BadRequest({
-          message: 'Invalid genre id',
+          message: `${genreId} is invalid genre id`,
           param: 'invalidGenreId',
         });
       }

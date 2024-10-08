@@ -8,6 +8,7 @@ import { validateEnvironmentVariables } from './common/env/validation';
 import { envFilePaths } from './config';
 import { typeormConfig } from './config/typeorm';
 import { MoviesModule } from './modules/movies/movies.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -22,6 +23,13 @@ import { MoviesModule } from './modules/movies/movies.module';
       useFactory: async (configService: ConfigService) => {
         return configService.get('typeorm');
       },
+    }),
+    CacheModule.register({
+      isGlobal: true,
+      // !Note:
+      // find movies response would take on average 66 kb with a limit of 1000 cached response
+      // it would take on around 66 mb to cache 1000 find movies responses
+      max: 1000,
     }),
     MoviesModule,
   ],

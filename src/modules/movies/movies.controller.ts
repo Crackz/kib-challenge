@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiTags,
@@ -11,6 +11,7 @@ import { FindMoviesDto } from './dtos/find-movies.dto';
 import { MovieDto } from './dtos/movie.dto';
 import { MoviesService } from './services/movies.service';
 import { OpenApi } from 'src/common/utils';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @ApiTags('Movies')
 @Controller('movies')
@@ -23,10 +24,11 @@ export class MoviesController {
   )
   @ApiBadRequestResponse(
     OpenApi.getApiErrorOpts({
-      message: 'Invalid genre id',
+      message: '{genreId} is invalid genre id',
       param: 'invalidGenreId',
     }),
   )
+  @UseInterceptors(CacheInterceptor)
   @Get('/')
   async getMany(
     @Query() query: FindMoviesDto,
