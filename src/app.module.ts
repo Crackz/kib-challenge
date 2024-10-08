@@ -10,6 +10,7 @@ import { typeormConfig } from './config/typeorm';
 import { MoviesModule } from './modules/movies/movies.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { UsersModule } from './modules/users/users.module';
+import { MoviesRatingsModule } from './modules/movies-ratings/movies-ratings.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UsersModule } from './modules/users/users.module';
     }),
     UsersModule,
     MoviesModule,
+    MoviesRatingsModule,
   ],
 })
 export class AppModule {

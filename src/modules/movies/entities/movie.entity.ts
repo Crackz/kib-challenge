@@ -45,4 +45,7 @@ export class MovieEntity extends BaseEntity {
 
   @Column()
   voteCount: number;
+
+  @Column({ type: 'decimal' })
+  averageRating: string;
 }

@@ -1,23 +1,23 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PaginatedResult } from 'src/common/interfaces/paginated-result.dto';
-import { MovieDto } from '../dtos/movie.dto';
-import { MoviesRepo } from '../movies.repo';
-import { FindMoviesDto } from '../dtos/find-movies.dto';
-import { MovieEntity } from '../entities/movie.entity';
+import { ApiErrors } from 'src/common/utils';
 import { FilesService } from 'src/modules/files/files.service';
 import { MoviesGenresService } from 'src/modules/movies-genres/movies.service';
-import { ApiErrors } from 'src/common/utils';
-import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager';
+import { FindMoviesDto } from '../dtos/find-movies.dto';
+import { MovieDto } from '../dtos/movie.dto';
+import { MovieEntity } from '../entities/movie.entity';
+import { MoviesRepo } from '../movies.repo';
+import { BaseService } from 'src/common/services/base.service';
 
 @Injectable()
-export class MoviesService {
+export class MoviesService extends BaseService<MovieEntity> {
   constructor(
     private readonly moviesRepo: MoviesRepo,
     private readonly filesService: FilesService,
     private readonly moviesGenresService: MoviesGenresService,
-    @Inject(CACHE_MANAGER)
-    private readonly cacheManager: Cache,
-  ) {}
+  ) {
+    super(moviesRepo);
+  }
 
   private checkValidGenres(genreIds?: string[]): number[] {
     if (!genreIds) {
@@ -54,6 +54,7 @@ export class MoviesService {
       title: movie.title,
       voteAverage: movie.voteAverage,
       voteCount: movie.voteCount,
+      averageRating: +Number(movie.averageRating).toFixed(2),
     };
   }
 

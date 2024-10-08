@@ -13,4 +13,5 @@ export class MovieDto {
   title?: string;
   voteAverage: number;
   voteCount: number;
+  averageRating: number;
 }

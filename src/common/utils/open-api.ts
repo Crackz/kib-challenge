@@ -9,13 +9,17 @@ import {
   ErrorMessages,
   ErrorResponse,
 } from '../interfaces/api-errors.interface';
+import { API_KEY_TOKEN } from '../constants';
 
 export class OpenApi {
   static setup(servePath: string, app: INestApplication): void {
     const options = new DocumentBuilder()
       .setTitle('KIB Challenge')
       .setVersion('1.0')
-      .addBearerAuth()
+      .addApiKey(
+        { name: 'x-api-key', type: 'apiKey', in: 'header' },
+        API_KEY_TOKEN,
+      )
       .addServer('/v1')
       .build();
 

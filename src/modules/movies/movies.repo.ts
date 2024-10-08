@@ -30,6 +30,8 @@ export class MoviesRepo extends BaseRepo<MovieEntity> {
 
     const movies = await this.repo.find({
       where: filterQuery,
+      // TODO: add index on popularity to improve performance
+      order: { popularity: 'DESC' },
       skip: filter.offset,
       take: filter.limit,
     });
