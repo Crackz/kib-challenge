@@ -64,8 +64,8 @@ export class MoviesService extends BaseService<MovieEntity> {
     const validGenreIds = this.checkValidGenres(findMoviesDto.genreIds);
 
     const { movies, totalCount } = await this.moviesRepo.searchableFind({
-      offset: 0,
-      limit: 100,
+      offset: findMoviesDto.offset,
+      limit: findMoviesDto.limit,
       genreIds: validGenreIds,
       title: findMoviesDto.title,
     });

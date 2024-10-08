@@ -6,7 +6,7 @@ export const NodeEnvironment = {
   TESTING: 'testing',
 } as const;
 
-export const DEFAULT_PAGE = 1;
+export const DEFAULT_OFFSET = 0;
 export const DEFAULT_LIMIT = 20;
 
 export const AUTHENTICATED_USER_ATTRIBUTE_NAME = 'user';
