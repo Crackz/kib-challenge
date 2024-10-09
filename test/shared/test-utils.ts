@@ -1,3 +1,4 @@
+import { Cache } from '@nestjs/cache-manager';
 import { DataSource } from 'typeorm';
 
 export class TestUtils {
@@ -13,5 +14,9 @@ export class TestUtils {
     } catch (error) {
       throw new Error(`ERROR: Cleaning test database: ${error}`);
     }
+  };
+
+  static clearAllInMemoryDB = async (cacheManager: Cache): Promise<void> => {
+    await cacheManager.reset();
   };
 }
