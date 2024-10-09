@@ -58,7 +58,7 @@ export class UsersSeedService implements OnApplicationBootstrap {
     ]);
 
     this.logger.verbose(
-      `Inserted 3 dummy users with tokens ${USER1_AUTH_TOKEN}, ${USER2_AUTH_TOKEN}, ${USER2_AUTH_TOKEN}, ${USER3_AUTH_TOKEN}`,
+      `Inserted 3 dummy users with tokens ${USER1_AUTH_TOKEN}, ${USER2_AUTH_TOKEN}, ${USER3_AUTH_TOKEN}`,
     );
   }
 }
