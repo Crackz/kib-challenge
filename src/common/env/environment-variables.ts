@@ -1,5 +1,5 @@
-import { IsDefined, IsEnum, IsNumber, IsString } from "class-validator";
-import { NodeEnvironment } from "../constants";
+import { IsDefined, IsEnum, IsNumber, IsString } from 'class-validator';
+import { NodeEnvironment } from '../constants';
 
 export class EnvironmentVariables {
   // External Environment Variables
@@ -53,4 +53,8 @@ export class EnvironmentVariables {
   @IsDefined()
   @IsString()
   TMDB_IMAGE_BASE_URL: string;
+
+  @IsDefined()
+  @IsString()
+  TMDB_API_KEY: string;
 }

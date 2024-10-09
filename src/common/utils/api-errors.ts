@@ -70,6 +70,7 @@ export class ApiErrors extends Error {
       message: message || ErrorMessages.FORBIDDEN,
     });
   static InternalServerError = (error: Error): ApiErrors => {
+    console.log('error : ', error);
     return new ApiErrors({
       errorType: 'INTERNAL_SERVER_ERROR',
       message:
