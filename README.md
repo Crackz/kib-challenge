@@ -16,6 +16,7 @@
 - API KEY AUTH is implemented instead of JWT. 3 dummy users are created on app bootstrap with tokens `USER1_AUTH_TOKEN`, `USER2_AUTH_TOKEN`, `USER3_AUTH_TOKEN`
 - Caching layer is implemented across all apis but in real world scenario I would implement custom one to fit the specific use case
 - We should implement a worker to fetch the new data from tmdb periodically then push it to db and also reset the cache. note that might have a great impact on latency if we have a large data set. (not implemented)
+> Note: you can take a look at [GameOfThree](https://github.com/Crackz/game-of-three/tree/main) project it's utilizing a message queue to push the jobs to the workers
 
 ---
 
