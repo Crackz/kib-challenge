@@ -43,8 +43,12 @@ export class MoviesService extends BaseService<MovieEntity> {
       id: movie.id,
       isAdult: movie.isAdult,
       hasVideo: movie.hasVideo,
-      backdropImg: this.filesService.getTMDBFileURL(movie.backdropFilePath),
-      posterImg: this.filesService.getTMDBFileURL(movie.posterFilePath),
+      backdropImg: movie.backdropFilePath
+        ? this.filesService.getTMDBFileURL(movie.backdropFilePath)
+        : null,
+      posterImg: movie.posterFilePath
+        ? this.filesService.getTMDBFileURL(movie.posterFilePath)
+        : null,
       genreIds: movie.genreIds,
       originalId: movie.originalId,
       originalTitle: movie.originalTitle,
@@ -52,7 +56,7 @@ export class MoviesService extends BaseService<MovieEntity> {
       popularity: movie.popularity,
       releaseDate: movie.releaseDate,
       title: movie.title,
-      voteAverage: movie.voteAverage,
+      voteAverage: +Number(movie.voteAverage).toFixed(2),
       voteCount: movie.voteCount,
       averageRating: +Number(movie.averageRating).toFixed(2),
     };

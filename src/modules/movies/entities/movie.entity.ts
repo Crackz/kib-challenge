@@ -40,8 +40,8 @@ export class MovieEntity extends BaseEntity {
   @Column({ nullable: true })
   title?: string;
 
-  @Column()
-  voteAverage: number;
+  @Column({ type: 'decimal' })
+  voteAverage: string;
 
   @Column()
   voteCount: number;

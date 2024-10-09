@@ -32,9 +32,11 @@ export class MoviesSeedService implements OnApplicationBootstrap {
       overview: movie.overview,
       popularity: movie.popularity,
       posterFilePath: movie.poster_path,
-      releaseDate: movie.release_date ? new Date(movie.release_date) : null,
+      releaseDate: movie.release_date
+        ? new Date(movie.release_date + 'Z')
+        : null,
       title: movie.title,
-      voteAverage: movie.vote_average,
+      voteAverage: movie.vote_average.toString(),
       voteCount: movie.vote_count,
       averageRating: '0',
     };
