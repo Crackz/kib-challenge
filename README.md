@@ -1,8 +1,8 @@
 
 #### Architecture
 ##### System Design
-<a href="https://raw.githubusercontent.com/Crackz/kib-challenge/main/diagrams/architecture.png">
-<img src="https://raw.githubusercontent.com/Crackz/kib-challenge/main/diagrams/architecture.png" width="400" />
+<a href="https://raw.githubusercontent.com/Crackz/kib-challenge/refs/heads/master/diagrams/architecture.png">
+<img src="https://raw.githubusercontent.com/Crackz/kib-challenge/refs/heads/master/diagrams/architecture.png" width="400" />
 </a>
 
 
