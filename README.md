@@ -72,5 +72,5 @@
 
 #### Miscellaneous
 
-You may notice there is a warning when install packages it's being caused by a dependency related to `jest` which is not a big deal since it will only affect the test environment. read further details [here](https://github.com/jestjs/jest/issues/15173)
+You may notice there is a warning when installing packages it's caused by a dependency related to `jest@latest` which is not a big deal since it will only affect the test environment. read further details [here](https://github.com/jestjs/jest/issues/15173)
 
